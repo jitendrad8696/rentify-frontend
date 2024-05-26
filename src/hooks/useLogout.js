@@ -10,7 +10,7 @@ const useLogout = () => {
 
   const logoutUser = async () => {
     try {
-      await axios.post("/api/v1/users/logout");
+      await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/users/logout");
 
       dispatch(logout());
       dispatch(getProperties([]));

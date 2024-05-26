@@ -13,7 +13,7 @@ const AuthenticatedRoute = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("/api/v1/users/me", {
+        const response = await axios.get("https://rentify-backend-llkc.onrender.com/api/v1/users/me", {
           withCredentials: true,
         });
 

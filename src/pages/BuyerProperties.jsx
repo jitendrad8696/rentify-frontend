@@ -27,7 +27,7 @@ function BuyerProperties() {
 
   const sendOwnerInfo = async (property) => {
     try {
-      const response = await axios.post("/api/v1/properties/sendOwnerInfo", {
+      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/sendOwnerInfo", {
         propertyId: property._id,
         buyerId: buyer._id,
       });
@@ -55,7 +55,7 @@ function BuyerProperties() {
 
   const handleToggleLike = async (property) => {
     try {
-      const response = await axios.post("/api/v1/properties/toggle-like", {
+      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/toggle-like", {
         propertyId: property._id,
         userId: buyer._id,
       });

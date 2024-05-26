@@ -851,7 +851,7 @@ function PostProperty() {
 
       try {
         const response = await axios.post(
-          "/api/v1/properties/post-property",
+          "https://rentify-backend-llkc.onrender.com/api/v1/properties/post-property",
           formData,
           {
             withCredentials: true,

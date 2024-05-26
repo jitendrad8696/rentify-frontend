@@ -59,7 +59,7 @@ function ResetPassword() {
 
       try {
         const response = await axios.put(
-          "/api/v1/users/reset-password",
+          "https://rentify-backend-llkc.onrender.com/api/v1/users/reset-password",
           trimmedFormData
         );
 

@@ -822,7 +822,7 @@ function FilterProperties() {
 
       try {
         const response = await axios.post(
-          "/api/v1/properties/filter",
+          "https://rentify-backend-llkc.onrender.com/api/v1/properties/filter",
           filteredData,
           {
             withCredentials: true,
