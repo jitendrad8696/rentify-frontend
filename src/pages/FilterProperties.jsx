@@ -821,10 +821,12 @@ function FilterProperties() {
         }, {});
 
       try {
+        const token = localStorage.getItem("authToken");
         const response = await axios.post(
           "https://rentify-backend-llkc.onrender.com/api/v1/properties/filter",
           filteredData,
           {
+            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );

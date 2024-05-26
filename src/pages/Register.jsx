@@ -83,6 +83,7 @@ function Register() {
 
         if (response.data.success) {
           dispatch(saveUser(response.data.data));
+          localStorage.setItem("authToken", response.data.data.token);
           navigate("/home");
         } else {
           setErrors({ api: response.data.message });

@@ -753,9 +753,11 @@ function EditProperty() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const token = localStorage.getItem("authToken");
         const response = await axios.get(
           `https://rentify-backend-llkc.onrender.com/api/v1/properties/getPropertyById/${id}`,
           {
+            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );
@@ -871,10 +873,12 @@ function EditProperty() {
       setErrors({});
 
       try {
+        const token = localStorage.getItem("authToken");
         const response = await axios.put(
           `https://rentify-backend-llkc.onrender.com/api/v1/properties/update/${id}`,
           formData,
           {
+            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );

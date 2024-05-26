@@ -13,9 +13,12 @@ const PrivateRoute = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        const token = localStorage.getItem("authToken");
+        console.log(token);
         const response = await axios.get(
           "https://rentify-backend-llkc.onrender.com/api/v1/users/me",
           {
+            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );
@@ -25,11 +28,13 @@ const PrivateRoute = () => {
         } else {
           dispatch(logout());
           dispatch(getProperties([]));
+          localStorage.removeItem("authToken");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
         dispatch(logout());
         dispatch(getProperties([]));
+        localStorage.removeItem("authToken");
       } finally {
         setLoading(false);
       }

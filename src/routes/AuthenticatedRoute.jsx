@@ -13,20 +13,28 @@ const AuthenticatedRoute = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("https://rentify-backend-llkc.onrender.com/api/v1/users/me", {
-          withCredentials: true,
-        });
+        const token = localStorage.getItem("authToken");
+        console.log(token);
+        const response = await axios.get(
+          "https://rentify-backend-llkc.onrender.com/api/v1/users/me",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
 
         if (response.data.success) {
           dispatch(saveUser(response.data.data));
         } else {
           dispatch(logout());
           dispatch(getProperties([]));
+          localStorage.removeItem("authToken");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
         dispatch(logout());
         dispatch(getProperties([]));
+        localStorage.removeItem("authToken");
       } finally {
         setLoading(false);
       }

@@ -25,7 +25,14 @@ function Properties() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("https://rentify-backend-llkc.onrender.com/api/v1/properties/get-properties");
+        const token = localStorage.getItem('authToken');
+        const response = await axios.get(
+          "https://rentify-backend-llkc.onrender.com/api/v1/properties/get-properties",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
         dispatch(getProperties(response.data.data));
         setLoading(false);
       } catch (error) {
@@ -46,8 +53,14 @@ function Properties() {
 
   const handleDeleteProperty = async (propertyId) => {
     try {
+      const token = localStorage.getItem('authToken');
       const response = await axios.delete(
-        `https://rentify-backend-llkc.onrender.com/api/v1/properties/delete/${propertyId}`
+        `https://rentify-backend-llkc.onrender.com/api/v1/properties/delete/${propertyId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
       );
       if (response.data.success) {
         dispatch(deleteProperty(propertyId));

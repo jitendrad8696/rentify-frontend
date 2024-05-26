@@ -35,9 +35,14 @@ function ForgotPassword() {
       setErrors({});
 
       try {
+        const token = localStorage.getItem("authToken");
         const response = await axios.post(
           "https://rentify-backend-llkc.onrender.com/api/v1/users/forgot-password",
-          trimmedFormData
+          trimmedFormData,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
         );
 
         if (response.data.success) {
@@ -47,6 +52,7 @@ function ForgotPassword() {
 
           setTimeout(() => {
             dispatch(logout());
+            localStorage.removeItem("authToken");
             navigate("/login");
           }, 5000);
 

@@ -10,10 +10,21 @@ const useLogout = () => {
 
   const logoutUser = async () => {
     try {
-      await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/users/logout");
+      const token = localStorage.getItem('authToken');
+      localStorage.setItem('authToken', token);
+      await axios.post(
+        "https://rentify-backend-llkc.onrender.com/api/v1/users/logout",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
+      );
 
       dispatch(logout());
       dispatch(getProperties([]));
+      localStorage.setItem("authToken", "");
+      localStorage.removeItem("authToken");
 
       navigate("/login");
     } catch (error) {

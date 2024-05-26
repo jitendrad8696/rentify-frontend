@@ -27,10 +27,18 @@ function BuyerProperties() {
 
   const sendOwnerInfo = async (property) => {
     try {
-      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/sendOwnerInfo", {
-        propertyId: property._id,
-        buyerId: buyer._id,
-      });
+      const token = localStorage.getItem("authToken");
+      const response = await axios.post(
+        "https://rentify-backend-llkc.onrender.com/api/v1/properties/sendOwnerInfo",
+        {
+          propertyId: property._id,
+          buyerId: buyer._id,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
+      );
       if (response.data.success) {
         alert("Owner info sent to your email");
       } else {
@@ -55,10 +63,18 @@ function BuyerProperties() {
 
   const handleToggleLike = async (property) => {
     try {
-      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/toggle-like", {
-        propertyId: property._id,
-        userId: buyer._id,
-      });
+      const token = localStorage.getItem("authToken");
+      const response = await axios.post(
+        "https://rentify-backend-llkc.onrender.com/api/v1/properties/toggle-like",
+        {
+          propertyId: property._id,
+          userId: buyer._id,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
+      );
 
       if (response.data.success) {
         dispatch(updateProperty(response.data.data));

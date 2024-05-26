@@ -850,10 +850,13 @@ function PostProperty() {
       setErrors({});
 
       try {
+        const token = localStorage.getItem("authToken");
+        console.log(token);
         const response = await axios.post(
           "https://rentify-backend-llkc.onrender.com/api/v1/properties/post-property",
           formData,
           {
+            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );

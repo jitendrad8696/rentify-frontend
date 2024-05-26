@@ -58,9 +58,14 @@ function ResetPassword() {
       setErrors(validationErrors);
 
       try {
+        const token = localStorage.getItem("authToken");
         const response = await axios.put(
           "https://rentify-backend-llkc.onrender.com/api/v1/users/reset-password",
-          trimmedFormData
+          trimmedFormData,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
         );
 
         if (response.data.success) {
@@ -68,6 +73,7 @@ function ResetPassword() {
 
           setTimeout(() => {
             dispatch(logout());
+            localStorage.removeItem("authToken");
             navigate("/login");
           }, 5000);
 
