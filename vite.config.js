@@ -6,7 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://localhost:3000",
+      "/api": {
+        target: "https://rentify-backend-llkc.onrender.com",
+        changeOrigin: true,
+      },
     },
   },
 });
