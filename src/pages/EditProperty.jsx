@@ -754,7 +754,7 @@ function EditProperty() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `/api/v1/properties/getPropertyById/${id}`,
+          `https://rentify-backend-llkc.onrender.com/api/v1/properties/getPropertyById/${id}`,
           {
             withCredentials: true,
           }
@@ -872,7 +872,7 @@ function EditProperty() {
 
       try {
         const response = await axios.put(
-          `/api/v1/properties/update/${id}`,
+          `https://rentify-backend-llkc.onrender.com/api/v1/properties/update/${id}`,
           formData,
           {
             withCredentials: true,

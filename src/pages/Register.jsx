@@ -77,7 +77,7 @@ function Register() {
       setErrors({});
       try {
         const response = await axios.post(
-          "/api/v1/users/register",
+          "https://rentify-backend-llkc.onrender.com/api/v1/users/register",
           trimmedFormData
         );
 

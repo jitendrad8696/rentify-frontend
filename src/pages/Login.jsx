@@ -47,7 +47,7 @@ function Login() {
       setErrors({});
       try {
         const response = await axios.post(
-          "/api/v1/users/login",
+          "https://rentify-backend-llkc.onrender.com/api/v1/users/login",
           trimmedFormData
         );
 

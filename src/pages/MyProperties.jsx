@@ -26,7 +26,7 @@ function MyProperties() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("/api/v1/properties/getMYwatchlist");
+        const response = await axios.get("https://rentify-backend-llkc.onrender.com/api/v1/properties/getMYwatchlist");
         console.log(response.data.data);
         dispatch(getProperties(response.data.data));
         setLoading(false);
@@ -45,7 +45,7 @@ function MyProperties() {
 
   const sendOwnerInfo = async (property) => {
     try {
-      const response = await axios.post("/api/v1/properties/sendOwnerInfo", {
+      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/sendOwnerInfo", {
         propertyId: property._id,
         buyerId: buyer._id,
       });
@@ -73,7 +73,7 @@ function MyProperties() {
 
   const handleToggleLike = async (property) => {
     try {
-      const response = await axios.post("/api/v1/properties/toggle-like", {
+      const response = await axios.post("https://rentify-backend-llkc.onrender.com/api/v1/properties/toggle-like", {
         propertyId: property._id,
         userId: buyer._id,
       });
